@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Adicionar Projecto • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/add-project.css">
+</head>
+<body class="admin-body">
+
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item active"><a href="projects.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="title">Adicionar Projecto</h1>
+        </div>
+
+        <div class="right">
+          <div class="profile">
+            <div class="avatar">LB</div>
+            <div class="profile-info">
+              <div id="username">Admin</div>
+              <small class="muted">Administrador</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="content">
+        <div class="form-container">
+          <div class="card">
+            <div class="card-header bg-brand text-white">
+              <h2 class="mb-0"><i class="bi bi-folder-plus"></i> Novo Projecto</h2>
+            </div>
+
+            <div class="card-body">
+              <form id="projectForm" action="../backend/add_project.php" method="post" enctype="multipart/form-data">
+
+                <!-- SEÇÃO 1: INFORMAÇÕES GERAIS -->
+                <section class="form-section">
+                  <h3><i class="bi bi-info-circle"></i> Informações Gerais</h3>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="project_name">Nome do Projecto</label>
+                        <input id="project_name" name="name" type="text" class="form-control" placeholder="Ex: Sistema de Gestão Escolar" required>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="project_year">Ano</label>
+                        <select id="project_year" name="year" class="form-select" required>
+                          <option value="">-- Seleccionar --</option>
+                          <option value="2025">2025</option>
+                          <option value="2024">2024</option>
+                          <option value="2023">2023</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="project_status">Estado</label>
+                        <select id="project_status" name="status" class="form-select">
+                          <option value="desenvolvimento">Desenvolvimento</option>
+                          <option value="concluido">Concluído</option>
+                          <option value="defesa">Aguardando Defesa</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="project_course">Curso</label>
+                        <select id="project_course" name="course" class="form-select" required>
+                          <option value="">-- Seleccionar --</option>
+                          <option value="informatica">Informática</option>
+                          <option value="gestao">Gestão Empresarial</option>
+                          <option value="enfermagem">Enfermagem</option>
+                          <option value="contabilidade">Contabilidade & Gestão</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="project_type">Tipo de Projecto</label>
+                        <select id="project_type" name="type" class="form-select">
+                          <option value="">-- Seleccionar --</option>
+                          <option value="programacao">Programação</option>
+                          <option value="redes">Redes</option>
+                          <option value="gestao">Gestão</option>
+                          <option value="investigacao">Investigação</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- SEÇÃO 2: ORIENTAÇÃO -->
+                <section class="form-section">
+                  <h3><i class="bi bi-person-heart"></i> Orientação</h3>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="project_advisor">Orientador Principal</label>
+                        <input id="project_advisor" name="advisor" type="text" class="form-control" placeholder="Ex: Prof. João Silva" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="project_co_advisor">Co-Orientador (Opcional)</label>
+                        <input id="project_co_advisor" name="co_advisor" type="text" class="form-control" placeholder="Ex: Eng. Paulo Costa">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- SEÇÃO 3: MEMBROS -->
+                <section class="form-section">
+                  <h3><i class="bi bi-people"></i> Membros do Grupo</h3>
+                  
+                  <div id="membersList" class="members-list">
+                    <div class="member-input">
+                      <input type="text" name="members[]" class="form-control" placeholder="Nome do membro 1" required>
+                    </div>
+                  </div>
+                  <button id="addMember" type="button" class="btn btn-sm btn-outline-secondary mt-2">
+                    <i class="bi bi-plus-lg"></i> Adicionar Membro
+                  </button>
+                </section>
+
+                <!-- SEÇÃO 4: DESCRIÇÃO -->
+                <section class="form-section">
+                  <h3><i class="bi bi-file-text"></i> Descrição do Projecto</h3>
+                  
+                  <div class="form-group">
+                    <label for="project_summary">Resumo Breve</label>
+                    <textarea id="project_summary" name="summary" class="form-control" rows="3" placeholder="Resumo de uma ou duas linhas sobre o projecto..." required></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="project_description">Descrição Completa</label>
+                    <textarea id="project_description" name="description" class="form-control" rows="6" placeholder="Descrição detalhada do projecto, objectivos, metodologia, etc..." required></textarea>
+                  </div>
+                </section>
+
+                <!-- SEÇÃO 5: DOCUMENTAÇÃO -->
+                <section class="form-section">
+                  <h3><i class="bi bi-file-pdf"></i> Documentação</h3>
+                  
+                  <div class="form-group">
+                    <label for="project_pdf">Relatório em PDF (Opcional)</label>
+                    <input id="project_pdf" name="project_pdf" type="file" class="form-control" accept=".pdf">
+                    <small class="form-text text-muted">Máximo 10 MB em formato PDF</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="project_repository">Link do Repositório (Git) (Opcional)</label>
+                    <input id="project_repository" name="repository" type="url" class="form-control" placeholder="Ex: https://github.com/usuario/projeto">
+                  </div>
+                </section>
+
+                <!-- AÇÕES -->
+                <div class="form-actions">
+                  <a href="projects.html" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancelar
+                  </a>
+                  <button type="reset" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-counterclockwise"></i> Limpar
+                  </button>
+                  <button type="submit" class="btn btn-brand">
+                    <i class="bi bi-check-lg"></i> Guardar Projecto
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/admindashboard.js" defer></script>
+  <script src="../js/add-project.js"></script>
+</body>
+</html>

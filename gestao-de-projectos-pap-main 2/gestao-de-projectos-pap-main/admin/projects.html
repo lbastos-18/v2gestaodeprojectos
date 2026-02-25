@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Projectos • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/projects.css">
+</head>
+<body class="admin-body">
+
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item active"><a href="projects.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="title">Projectos</h1>
+        </div>
+
+        <div class="right">
+          <div class="search">
+            <input id="searchInput" type="search" class="form-control form-control-sm" placeholder="Pesquisar projecto..." />
+          </div>
+          <div class="profile">
+            <div class="avatar">LB</div>
+            <div class="profile-info">
+              <div id="username">Admin</div>
+              <small class="muted">Administrador</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="content">
+        <!-- INFO STATS -->
+        <div class="cards">
+          <div class="card">
+            <div class="stat-value">24</div>
+            <div class="stat-label">Total de Projectos</div>
+            <div class="trend up">
+              <i class="bi bi-arrow-up"></i> +3 este ano
+            </div>
+          </div>
+          <div class="card">
+            <div class="stat-value">18</div>
+            <div class="stat-label">Projectos Concluídos</div>
+            <div class="trend up">
+              <i class="bi bi-arrow-up"></i> 75%
+            </div>
+          </div>
+          <div class="card">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Em Desenvolvimento</div>
+            <div class="trend">
+              <i class="bi bi-info-circle"></i> Aguardando defesa
+            </div>
+          </div>
+        </div>
+
+        <!-- TABELA PROJECTS -->
+        <div class="layout-panel">
+          <aside class="filter-panel" id="filterPanel">
+            <h3>Filtros</h3>
+
+            <div class="filter-group">
+              <label for="filterCourse">Curso</label>
+              <select id="filterCourse" class="form-select form-select-sm">
+                <option value="all">Todos</option>
+                <option value="informatica">Informática</option>
+                <option value="gestao">Gestão Empresarial</option>
+                <option value="enfermagem">Enfermagem</option>
+                <option value="contabilidade">Contabilidade e Gestão</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filterStatus">Estado</label>
+              <select id="filterStatus" class="form-select form-select-sm">
+                <option value="all">Todos</option>
+                <option value="concluido">Concluído</option>
+                <option value="desenvolvimento">Desenvolvimento</option>
+                <option value="defesa">Aguardando Defesa</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filterYear">Ano</label>
+              <select id="filterYear" class="form-select form-select-sm">
+                <option value="all">Todos</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+              </select>
+            </div>
+
+            <div class="filter-actions d-flex">
+              <button id="applyFilters" class="btn btn-sm btn-brand me-2">Aplicar</button>
+              <button id="clearFilters" class="btn btn-sm btn-outline-secondary">Limpar</button>
+            </div>
+          </aside>
+
+          <main class="panel">
+            <div class="table-card card">
+              <div class="table-header">
+                <h3>Lista de Projectos</h3>
+                <div class="table-controls">
+                  <a href="add-project.html" class="btn btn-sm btn-brand">
+                    <i class="bi bi-plus-lg"></i> Novo Projecto
+                  </a>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="table table-hover table-striped" id="projectsTable">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Curso</th>
+                      <th>Orientador</th>
+                      <th>Membros</th>
+                      <th>Ano</th>
+                      <th>Estado</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong><a href="project-details.html?id=1" class="project-link">Sistema de Gestão Escolar</a></strong></td>
+                      <td>Informática</td>
+                      <td>Prof. João Silva</td>
+                      <td>3 membros</td>
+                      <td>2025</td>
+                      <td><span class="badge bg-success">Concluído</span></td>
+                      <td>
+                        <a href="project-details.html?id=1" class="btn btn-sm btn-outline-info" title="Visualizar">
+                          <i class="bi bi-eye"></i>
+                        </a>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong><a href="project-details.html?id=2" class="project-link">Rede Corporativa TCP/IP</a></strong></td>
+                      <td>Informática</td>
+                      <td>Eng. Paulo Costa</td>
+                      <td>2 membros</td>
+                      <td>2025</td>
+                      <td><span class="badge bg-warning">Desenvolvimento</span></td>
+                      <td>
+                        <a href="project-details.html?id=2" class="btn btn-sm btn-outline-info" title="Visualizar">
+                          <i class="bi bi-eye"></i>
+                        </a>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong><a href="project-details.html?id=3" class="project-link">App Gestão Hotelaria</a></strong></td>
+                      <td>Gestão Empresarial</td>
+                      <td>Dr. Manuel Rocha</td>
+                      <td>4 membros</td>
+                      <td>2025</td>
+                      <td><span class="badge bg-info">Defesa</span></td>
+                      <td>
+                        <a href="project-details.html?id=3" class="btn btn-sm btn-outline-info" title="Visualizar">
+                          <i class="bi bi-eye"></i>
+                        </a>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/admindashboard.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Projeto - Gestão de Projetos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #555; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-family: Arial, sans-serif; }
+        textarea { resize: vertical; min-height: 100px; }
+        button { width: 100%; padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #0056b3; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .error { color: #d32f2f; margin-top: 5px; font-size: 14px; }
+        .success { color: #388e3c; padding: 15px; background: #e8f5e9; border-radius: 4px; margin-bottom: 20px; }
+        .loader { display: none; text-align: center; }
+        .loader.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Novo Projeto</h1>
+        
+        <div class="success" id="successMsg" style="display: none;"></div>
+        
+        <form id="projectForm">
+            <!-- Token CSRF (critico para segurança) -->
+            <input type="hidden" name="csrf_token" id="csrfToken">
+            
+            <div class="form-group">
+                <label for="name">Nome do Projeto *</label>
+                <input type="text" id="name" name="name" required maxlength="255" placeholder="ex: Sistema de Gestão de Bibliotecas">
+                <div class="error" id="nameError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="year">Ano *</label>
+                <input type="number" id="year" name="year" required min="2000" max="2100" placeholder="2024">
+                <div class="error" id="yearError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="course">Curso</label>
+                <input type="text" id="course" name="course" maxlength="255" placeholder="ex: Engenharia Informática">
+            </div>
+            
+            <div class="form-group">
+                <label for="type">Tipo de Projeto</label>
+                <select id="type" name="type">
+                    <option value="">Seleccione...</option>
+                    <option value="TCC">Trabalho de Conclusão de Curso</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Seminário">Seminário</option>
+                    <option value="Dissertação">Dissertação</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="advisor">Orientador</label>
+                <input type="text" id="advisor" name="advisor" maxlength="255" placeholder="Nome do orientador">
+            </div>
+            
+            <div class="form-group">
+                <label for="summary">Resumo</label>
+                <textarea id="summary" name="summary" maxlength="1000" placeholder="Resumo breve do projeto..."></textarea>
+                <small id="summaryCount">0/1000</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Descrição</label>
+                <textarea id="description" name="description" maxlength="5000" placeholder="Descrição detalhada do projeto..."></textarea>
+                <small id="descriptionCount">0/5000</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="pdf">Ficheiro PDF do Projeto</label>
+                <input type="file" id="pdf" name="project_pdf" accept=".pdf" size="50">
+                <small>Máximo 5 MB, apenas PDF</small>
+                <div class="error" id="pdfError"></div>
+            </div>
+            
+            <div class="loader" id="loader">Carregando...</div>
+            <button type="submit" id="submitBtn">Criar Projeto</button>
+        </form>
+    </div>
+    
+    <script src="js/auth.js"></script>
+    <script>
+        'use strict';
+        
+        const projectForm = document.getElementById('projectForm');
+        const successMsg = document.getElementById('successMsg');
+        const loader = document.getElementById('loader');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // Carrega token CSRF ao carregar a página
+        async function loadCSRFToken() {
+            try {
+                const res = await fetch('backend/csrf-token.php', { method: 'GET' });
+                if (!res.ok) throw new Error('Erro ao obter token CSRF');
+                const json = await res.json();
+                document.getElementById('csrfToken').value = json.csrf_token;
+            } catch (err) {
+                console.error('Erro ao carregar token CSRF:', err);
+                alert('Erro de segurança. Recarregue a página.');
+            }
+        }
+        
+        // Valida autenticação ao carregar
+        async function checkAuthentication() {
+            const auth = await Auth.isAuthenticated();
+            if (!auth) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // Conta caracteres em tempo real
+        document.getElementById('summary').addEventListener('input', function() {
+            document.getElementById('summaryCount').textContent = `${this.value.length}/1000`;
+        });
+        
+        document.getElementById('description').addEventListener('input', function() {
+            document.getElementById('descriptionCount').textContent = `${this.value.length}/5000`;
+        });
+        
+        // Valida ficheiro PDF
+        document.getElementById('pdf').addEventListener('change', function() {
+            const file = this.files[0];
+            if (!file) return;
+            
+            const maxSize = 5 * 1024 * 1024; // 5 MB
+            const validTypes = ['application/pdf'];
+            
+            let error = null;
+            
+            if (file.size > maxSize) {
+                error = `Ficheiro muito grande (${(file.size / (1024 * 1024)).toFixed(1)} MB). Máximo: 5 MB`;
+            }
+            
+            if (!validTypes.includes(file.type)) {
+                error = 'Apenas ficheiros PDF são permitidos';
+            }
+            
+            const errorEl = document.getElementById('pdfError');
+            if (error) {
+                errorEl.textContent = error;
+                this.value = '';
+            } else {
+                errorEl.textContent = '';
+            }
+        });
+        
+        // Submit do formulário
+        projectForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Limpar erros anteriores
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+            
+            // Validar campos obrigatórios
+            const name = document.getElementById('name').value.trim();
+            const year = parseInt(document.getElementById('year').value);
+            
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Nome obrigatório';
+                return;
+            }
+            
+            if (!year || year < 2000 || year > 2100) {
+                document.getElementById('yearError').textContent = 'Ano inválido';
+                return;
+            }
+            
+            // Enviar formulário
+            submitBtn.disabled = true;
+            loader.classList.add('active');
+            
+            try {
+                const formData = new FormData(this);
+                const res = await fetch('backend/add_project.php', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'include'
+                });
+                
+                const json = await res.json();
+                
+                if (res.ok && json.success) {
+                    // Sucesso
+                    successMsg.style.display = 'block';
+                    successMsg.textContent = '✅ Projeto criado com sucesso!';
+                    projectForm.reset();
+                    loadCSRFToken();
+                    
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    // Erro da API
+                    alert('Erro: ' + (json.error || 'Falha ao criar projeto'));
+                }
+            } catch (err) {
+                console.error('Erro:', err);
+                alert('Erro ao enviar. Tente novamente.');
+            } finally {
+                submitBtn.disabled = false;
+                loader.classList.remove('active');
+            }
+        });
+        
+        // Inicializar ao carregar página
+        document.addEventListener('DOMContentLoaded', async () => {
+            const isAuth = await checkAuthentication();
+            if (isAuth) {
+                loadCSRFToken();
+            }
+        });
+    </script>
+</body>
+</html>

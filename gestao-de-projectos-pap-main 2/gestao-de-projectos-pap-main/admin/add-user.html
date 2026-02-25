@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Adicionar Orientador • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/add-project.css">
+</head>
+<body class="admin-body">
+
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item"><a href="projects.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item active"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="title">Adicionar Orientador</h1>
+        </div>
+
+        <div class="right">
+          <div class="profile">
+            <div class="avatar">LB</div>
+            <div class="profile-info">
+              <div id="username">Admin</div>
+              <small class="muted">Administrador</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="content">
+        <div class="form-container">
+          <div class="card">
+            <div class="card-header bg-brand text-white">
+              <h2 class="mb-0"><i class="bi bi-person-plus"></i> Novo Orientador</h2>
+            </div>
+
+            <div class="card-body">
+              <form id="userForm" action="../backend/add_user.php" method="post">
+                
+                <!-- SEÇÃO 1: INFORMAÇÕES PESSOAIS -->
+                <section class="form-section">
+                  <h3><i class="bi bi-person-circle"></i> Informações Pessoais</h3>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstName">Nome</label>
+                        <input id="firstName" name="first_name" type="text" class="form-control" placeholder="Ex: João" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="lastName">Apelido</label>
+                        <input id="lastName" name="last_name" type="text" class="form-control" placeholder="Ex: Silva" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" class="form-control" placeholder="Ex: joao.silva@escola.pt" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone">Telefone (Opcional)</label>
+                    <input id="phone" name="phone" type="tel" class="form-control" placeholder="Ex: +351 912 345 678">
+                  </div>
+                </section>
+
+                <!-- SEÇÃO 2: CREDENCIAIS -->
+                <section class="form-section">
+                  <h3><i class="bi bi-shield-lock"></i> Credenciais</h3>
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="username">Nome de Utilizador</label>
+                        <input id="username" name="username" type="text" class="form-control" placeholder="Ex: jsilva" required>
+                        <small class="form-text text-muted">Sem espaços, mínimo 4 caracteres</small>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="password">Palavra-passe Temporária</label>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="Ex: TempPass@123" required>
+                        <small class="form-text text-muted">Utilizador deverá alterar na 1ª entrada</small>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- SEÇÃO 3: INFORMAÇÃO PROFISSIONAL -->
+                <section class="form-section">
+                  <h3><i class="bi bi-briefcase"></i> Informação Profissional</h3>
+                  
+                  <div class="form-group">
+                    <label for="specialty">Área de Especialidade</label>
+                    <select id="specialty" name="specialty" class="form-select" required>
+                      <option value="">-- Seleccionar --</option>
+                      <option value="programacao">Programação</option>
+                      <option value="redes">Redes e Sistemas</option>
+                      <option value="gestao">Gestão Empresarial</option>
+                      <option value="enfermagem">Enfermagem Clínica</option>
+                      <option value="contabilidade">Contabilidade e Gestão</option>
+                      <option value="marketing">Marketing e Vendas</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="department">Departamento</label>
+                    <input id="department" name="department" type="text" class="form-control" placeholder="Ex: Informática">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="maxProjects">Máximo de Projectos a Orientar</label>
+                    <input id="maxProjects" name="max_projects" type="number" class="form-control" value="5" min="1" max="20">
+                  </div>
+                </section>
+
+                <!-- SEÇÃO 4: PERMISSÕES -->
+                <section class="form-section">
+                  <h3><i class="bi bi-toggle2-on"></i> Permissões</h3>
+                  
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="canAddProjects" name="can_add_projects" checked>
+                    <label class="form-check-label" for="canAddProjects">
+                      Pode adicionar projectos
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="canEditProjects" name="can_edit_projects" checked>
+                    <label class="form-check-label" for="canEditProjects">
+                      Pode editar projectos
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="canDefend" name="can_defend" checked>
+                    <label class="form-check-label" for="canDefend">
+                      Pode marcar defesas
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="active" name="active" checked>
+                    <label class="form-check-label" for="active">
+                      Conta Activa
+                    </label>
+                  </div>
+                </section>
+
+                <!-- AÇÕES -->
+                <div class="form-actions">
+                  <a href="users.html" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Cancelar
+                  </a>
+                  <button type="reset" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-counterclockwise"></i> Limpar
+                  </button>
+                  <button type="submit" class="btn btn-brand">
+                    <i class="bi bi-check-lg"></i> Criar Orientador
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/admindashboard.js" defer></script>
+</body>
+</html>

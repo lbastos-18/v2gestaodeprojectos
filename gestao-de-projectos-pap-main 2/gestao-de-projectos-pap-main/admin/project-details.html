@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Detalhes do Projeto • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/project-details-admin.css">
+</head>
+<body class="admin-body">
+
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item"><a href="projects.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="breadcrumb-nav">
+            <a href="projects.html"><i class="bi bi-folder"></i> Projectos</a>
+            <i class="bi bi-chevron-right"></i>
+            <span id="projectBreadcrumb">Detalhes do Projeto</span>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Profile" class="avatar">
+            <span class="name">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="content">
+        <!-- HEADER DO PROJETO -->
+        <div class="project-header-card">
+          <div class="project-header-content">
+            <h1 id="projectTitle">Sistema de Gestão de Projectos Académicos</h1>
+            <p id="projectSubtitle">Projeto académico de fim de curso</p>
+            <div class="project-meta-badges">
+              <span id="courseTag" class="badge bg-primary"><i class="bi bi-book"></i> Informática</span>
+              <span id="typeTag" class="badge bg-info"><i class="bi bi-tag"></i> Programação</span>
+              <span id="yearTag" class="badge bg-secondary"><i class="bi bi-calendar"></i> 2025</span>
+              <span id="statusTag" class="badge bg-success"><i class="bi bi-check-circle"></i> Completo</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-sm btn-outline-primary" id="editBtn">
+              <i class="bi bi-pencil"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-outline-danger" id="deleteBtn">
+              <i class="bi bi-trash"></i> Eliminar
+            </button>
+          </div>
+        </div>
+
+        <!-- LAYOUT COM PAINÉIS -->
+        <div class="layout-panel">
+          <!-- PAINEL LATERAL -->
+          <aside class="filter-panel details-sidebar">
+            <h3><i class="bi bi-info-circle"></i> Informações</h3>
+
+            <div class="info-group">
+              <label>Curso</label>
+              <p id="course">Informática</p>
+            </div>
+
+            <div class="info-group">
+              <label>Tipo</label>
+              <p id="type">Programação</p>
+            </div>
+
+            <div class="info-group">
+              <label>Ano</label>
+              <p id="year">2025</p>
+            </div>
+
+            <div class="info-group">
+              <label>Orientador</label>
+              <p id="advisor">Prof. João Silva</p>
+            </div>
+
+            <div class="info-group">
+              <label>Data de Criação</label>
+              <p id="createdDate">25 de Fevereiro de 2025</p>
+            </div>
+
+            <div class="info-group">
+              <label>Data de Defesa</label>
+              <p id="defenseDate">20 de Março de 2025</p>
+            </div>
+
+            <hr>
+
+            <div class="info-group">
+              <label>Número de Membros</label>
+              <p id="memberCount">4</p>
+            </div>
+
+            <div class="info-group">
+              <label>Avaliação</label>
+              <div class="rating">
+                <div class="rating-value">
+                  <span id="rating">18</span>
+                  <span class="text-muted">/20</span>
+                </div>
+                <div class="progress">
+                  <div id="ratingBar" class="progress-bar bg-success" style="width: 90%"></div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- PAINEL PRINCIPAL -->
+          <main class="panel">
+            <!-- ABAN DE CONTEÚDO -->
+            <div class="details-tabs">
+              <nav>
+                <button class="tab-btn active" data-tab="summary">
+                  <i class="bi bi-file-text"></i> Resumo
+                </button>
+                <button class="tab-btn" data-tab="members">
+                  <i class="bi bi-people"></i> Membros
+                </button>
+                <button class="tab-btn" data-tab="description">
+                  <i class="bi bi-file-earmark-text"></i> Descrição
+                </button>
+                <button class="tab-btn" data-tab="files">
+                  <i class="bi bi-file-earmark"></i> Ficheiros
+                </button>
+              </nav>
+            </div>
+
+            <!-- TAB 1: RESUMO -->
+            <div class="tab-content active card" id="summary">
+              <h3>Resumo do Projeto</h3>
+              <p id="summaryText">
+                Este projeto consiste no desenvolvimento de uma aplicação web destinada ao gerenciamento 
+                de projetos académicos, com o objetivo de facilitar a organização, acompanhamento e 
+                consulta dos trabalhos de fim de curso. A aplicação permite que alunos, professores e 
+                gestores académicos tenham acesso centralizado às informações dos projetos defendidos.
+              </p>
+
+              <div class="summary-stats">
+                <div class="stat-item">
+                  <span class="stat-label">Duração do Projeto</span>
+                  <span class="stat-value">3 meses</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Horas de Trabalho</span>
+                  <span class="stat-value">120 h</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Linguagens Utilizadas</span>
+                  <span class="stat-value">PHP, JavaScript, HTML/CSS</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Base de Dados</span>
+                  <span class="stat-value">MySQL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: MEMBROS -->
+            <div class="tab-content card" id="members">
+              <h3>Membros do Grupo</h3>
+              <div class="members-table">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Email</th>
+                      <th>Número</th>
+                      <th>Contribuição</th>
+                    </tr>
+                  </thead>
+                  <tbody id="membersList">
+                    <tr>
+                      <td>Lukeny Bastos</td>
+                      <td>lukeny.bastos@example.pt</td>
+                      <td>12345</td>
+                      <td><span class="badge bg-primary">Backend</span></td>
+                    </tr>
+                    <tr>
+                      <td>Belmiro Damião</td>
+                      <td>belmiro.damiao@example.pt</td>
+                      <td>12346</td>
+                      <td><span class="badge bg-info">Frontend</span></td>
+                    </tr>
+                    <tr>
+                      <td>Epandi Andrade</td>
+                      <td>epandi.andrade@example.pt</td>
+                      <td>12347</td>
+                      <td><span class="badge bg-warning">Base de Dados</span></td>
+                    </tr>
+                    <tr>
+                      <td>José André Suende</td>
+                      <td>jose.suende@example.pt</td>
+                      <td>12348</td>
+                      <td><span class="badge bg-success">Documentação</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TAB 3: DESCRIÇÃO -->
+            <div class="tab-content card" id="description">
+              <h3>Descrição Detalhada</h3>
+              <p id="descriptionText">
+                A aplicação foi desenvolvida utilizando tecnologias web modernas, permitindo que 
+                alunos, professores e gestores académicos tenham acesso centralizado às informações 
+                dos projetos defendidos. O sistema contribui para a melhoria da gestão académica, 
+                organização institucional e preservação dos trabalhos científicos.
+              </p>
+
+              <h4>Objetivos Alcançados</h4>
+              <ul id="objectives">
+                <li>Desenvolver uma plataforma web intuitiva e responsiva</li>
+                <li>Implementar sistema de autenticação e autorização</li>
+                <li>Criar painel de controlo para gestão de projetos</li>
+                <li>Permitir visualização e filtragem de projetos</li>
+                <li>Gerar relatórios e estatísticas</li>
+              </ul>
+
+              <h4>Tecnologias Utilizadas</h4>
+              <div class="tech-stack">
+                <span class="tech-badge">PHP</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">Bootstrap</span>
+                <span class="tech-badge">MySQL</span>
+              </div>
+            </div>
+
+            <!-- TAB 4: FICHEIROS -->
+            <div class="tab-content card" id="files">
+              <h3>Ficheiros do Projeto</h3>
+              <div class="files-list">
+                <div class="file-item">
+                  <div class="file-icon">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                  </div>
+                  <div class="file-info">
+                    <h4>Relatório Final</h4>
+                    <small class="text-muted">PDF • 2.5 MB • 25 fev 2025</small>
+                  </div>
+                  <div class="file-actions">
+                    <a href="#" class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-download"></i> Download
+                    </a>
+                  </div>
+                </div>
+
+                <div class="file-item">
+                  <div class="file-icon">
+                    <i class="bi bi-file-earmark-zip"></i>
+                  </div>
+                  <div class="file-info">
+                    <h4>Código Fonte</h4>
+                    <small class="text-muted">ZIP • 5.2 MB • 25 fev 2025</small>
+                  </div>
+                  <div class="file-actions">
+                    <a href="#" class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-download"></i> Download
+                    </a>
+                  </div>
+                </div>
+
+                <div class="file-item">
+                  <div class="file-icon">
+                    <i class="bi bi-file-earmark-slide"></i>
+                  </div>
+                  <div class="file-info">
+                    <h4>Apresentação</h4>
+                    <small class="text-muted">PPTX • 3.1 MB • 25 fev 2025</small>
+                  </div>
+                  <div class="file-actions">
+                    <a href="#" class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-download"></i> Download
+                    </a>
+                  </div>
+                </div>
+
+                <div class="file-item">
+                  <div class="file-icon">
+                    <i class="bi bi-image"></i>
+                  </div>
+                  <div class="file-info">
+                    <h4>Screenshots</h4>
+                    <small class="text-muted">ZIP • 8.7 MB • 25 fev 2025</small>
+                  </div>
+                  <div class="file-actions">
+                    <a href="#" class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-download"></i> Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </main>
+        </div>
+
+      </section>
+
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/project-details-admin.js" defer></script>
+</body>
+</html>

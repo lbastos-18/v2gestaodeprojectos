@@ -1,0 +1,417 @@
+/* =========================================================
+   PROJECT-DETAILS.CSS
+   Página: Detalhes do Projeto
+   Estilo: Design System - Detalhes Profissional
+   ========================================================= */
+
+html { 
+  box-sizing: border-box; 
+}
+
+body {
+  background: linear-gradient(180deg, var(--color-bg), var(--color-bg-secondary));
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-relaxed);
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 var(--spacing-8);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.project-header {
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+  color: var(--color-white);
+  padding: var(--spacing-16) 0;
+  box-shadow: var(--shadow-md);
+}
+
+.project-title {
+  font-size: var(--font-size-4xl);
+  font-weight: 800;
+  margin-bottom: var(--spacing-3);
+  letter-spacing: -0.5px;
+}
+
+.project-subtitle {
+  font-size: var(--font-size-base);
+  opacity: 0.95;
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.project-details {
+  margin-top: -40px;
+  padding-bottom: var(--spacing-16);
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   META CARD
+   ========================================================= */
+
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-8);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.meta-item .label {
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary);
+}
+
+.meta-item .value {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.meta-item .icon {
+  font-size: var(--font-size-xl);
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.project-section {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-8);
+  margin-bottom: var(--spacing-8);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease;
+}
+
+.project-section:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.project-section h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-6);
+  color: var(--color-text);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 2px solid var(--color-primary-200);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.project-section h2::before {
+  content: '▪';
+  color: var(--color-primary-600);
+  font-size: 20px;
+}
+
+.project-section h3 {
+  font-size: var(--font-size-lg);
+  margin-top: var(--spacing-6);
+  margin-bottom: var(--spacing-3);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.project-section p {
+  color: var(--color-text);
+  margin-bottom: var(--spacing-4);
+  line-height: var(--line-height-relaxed);
+}
+
+/* =========================================================
+   MEMBERS LIST
+   ========================================================= */
+
+.members-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.members-list li {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-base);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  transition: all 0.2s ease;
+}
+
+.members-list li:hover {
+  border-color: var(--color-primary-300);
+  background: var(--color-primary-50);
+  transform: translateX(2px);
+}
+
+.members-list li::before {
+  content: '👤';
+  font-size: 20px;
+}
+
+/* =========================================================
+   DOWNLOAD SECTION
+   ========================================================= */
+
+.download-section {
+  text-align: center;
+  padding: var(--spacing-8);
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-white));
+  border: 2px dashed var(--color-primary-200);
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-8);
+}
+
+.download-section h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-4);
+  color: var(--color-text);
+}
+
+.download-section p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-6);
+}
+
+.download-btn,
+.btn {
+  display: inline-block;
+  background: var(--color-primary-600);
+  color: var(--color-white);
+  padding: var(--spacing-3) var(--spacing-8);
+  border-radius: var(--radius-base);
+  text-decoration: none;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  font-size: var(--font-size-base);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.download-btn:hover,
+.btn:hover {
+  background: var(--color-primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.download-btn:active,
+.btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--color-primary-600);
+  border: 2px solid var(--color-primary-600);
+  box-shadow: none;
+}
+
+.btn.ghost:hover {
+  background: var(--color-primary-50);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn.danger {
+  background: var(--color-danger-600);
+}
+
+.btn.danger:hover {
+  background: var(--color-danger-700);
+}
+
+/* =========================================================
+   TABS / TOGGLE SECTIONS
+   ========================================================= */
+
+.section-tabs {
+  display: flex;
+  gap: var(--spacing-3);
+  border-bottom: 2px solid var(--color-border);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.section-tabs button {
+  background: transparent;
+  border: none;
+  padding: var(--spacing-3) var(--spacing-4);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  font-size: var(--font-size-sm);
+}
+
+.section-tabs button:hover {
+  color: var(--color-text);
+}
+
+.section-tabs button.active {
+  color: var(--color-primary-600);
+  border-bottom-color: var(--color-primary-600);
+}
+
+/* =========================================================
+   COMMENTS / FEEDBACK
+   ========================================================= */
+
+.comments-section {
+  margin-top: var(--spacing-8);
+}
+
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.comment {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  padding: var(--spacing-4);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.comment-author {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.comment-date {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.comment-body {
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.project-footer {
+  background: linear-gradient(135deg, var(--color-neutral-700), var(--color-neutral-800));
+  color: var(--color-neutral-200);
+  padding: var(--spacing-8) 0;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-16);
+}
+
+.project-footer p {
+  margin: 0;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/* Mobile */
+@media (max-width: 768px) {
+  .project-header {
+    padding: var(--spacing-12) 0;
+  }
+
+  .project-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .container {
+    padding: 0 var(--spacing-4);
+  }
+
+  .project-details {
+    margin-top: -30px;
+  }
+
+  .project-meta {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  .project-section {
+    padding: var(--spacing-6);
+  }
+
+  .members-list {
+    grid-template-columns: 1fr;
+  }
+
+  .section-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding: 0 var(--spacing-6);
+  }
+
+  .project-meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .members-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* ===============================
+   FIM DO FICHEIRO

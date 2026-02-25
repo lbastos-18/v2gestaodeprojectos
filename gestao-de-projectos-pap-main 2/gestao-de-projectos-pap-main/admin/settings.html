@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Configurações • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/settings.css">
+</head>
+<body class="admin-body">
+  <!-- Admin navbar -->
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item"><a href="projects.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item active"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="title">Configurações do Sistema</h1>
+        </div>
+
+        <div class="right">
+          <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Profile" class="avatar">
+            <span class="name">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <!-- NAVEGAÇÃO DE ABAS -->
+        <div class="settings-tabs">
+          <nav>
+            <button class="tab-btn active" data-tab="general">
+              <i class="bi bi-gear"></i> Geral
+            </button>
+            <button class="tab-btn" data-tab="security">
+              <i class="bi bi-shield-lock"></i> Segurança
+            </button>
+            <button class="tab-btn" data-tab="email">
+              <i class="bi bi-envelope"></i> Notificações
+            </button>
+            <button class="tab-btn" data-tab="admins">
+              <i class="bi bi-shield-check"></i> Administradores
+            </button>
+            <button class="tab-btn" data-tab="advanced">
+              <i class="bi bi-sliders"></i> Avançado
+            </button>
+          </nav>
+        </div>
+
+        <!-- ABA 1: CONFIGURAÇÕES GERAIS -->
+        <section class="tab-content active" id="general">
+          <div class="settings-card">
+            <h2>Configurações Gerais</h2>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-info-circle"></i> Informações do Sistema</h3>
+              
+              <div class="form-group">
+                <label for="siteName">Nome do Sistema</label>
+                <input id="siteName" type="text" class="form-control" value="Gestão de Projectos PAP" placeholder="Nome do site">
+                <small class="form-text text-muted">Nome que aparece em emails e notificações</small>
+              </div>
+
+              <div class="form-group">
+                <label for="siteEmail">Email do Sistema</label>
+                <input id="siteEmail" type="email" class="form-control" value="admin@gestao-projectos.pt" placeholder="Email do sistema">
+                <small class="form-text text-muted">Email para notificações automáticas</small>
+              </div>
+
+              <div class="form-group">
+                <label for="siteUrl">URL do Site</label>
+                <input id="siteUrl" type="url" class="form-control" value="https://gestao-projectos.pt" placeholder="URL">
+                <small class="form-text text-muted">URL base do sistema</small>
+              </div>
+
+              <div class="form-group">
+                <label for="siteLogo">Logo do Sistema</label>
+                <div class="input-group">
+                  <input id="siteLogo" type="text" class="form-control" value="/assets/logo.png" placeholder="Caminho do logo">
+                  <button type="button" class="btn btn-outline-secondary">
+                    <i class="bi bi-upload"></i> Upload
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-calendar"></i> Configurações de Período</h3>
+
+              <div class="form-group">
+                <label for="academicYear">Ano Académico Ativo</label>
+                <select id="academicYear" class="form-select">
+                  <option selected>2024/2025</option>
+                  <option>2025/2026</option>
+                  <option>2023/2024</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="projectsDeadline">Data Limite de Projetos</label>
+                <input id="projectsDeadline" type="date" class="form-control" value="2025-06-30">
+              </div>
+
+              <div class="form-group">
+                <label for="defensePeriod">Período de Defesa</label>
+                <div class="row g-2">
+                  <div class="col-md-6">
+                    <input type="date" class="form-control" value="2025-07-01" placeholder="Data início">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="date" class="form-control" value="2025-09-30" placeholder="Data fim">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="saveGeneral">
+                <i class="bi bi-check-circle"></i> Guardar Alterações
+              </button>
+              <button class="btn btn-outline-secondary" id="resetGeneral">
+                <i class="bi bi-arrow-clockwise"></i> Descartar
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABA 2: SEGURANÇA -->
+        <section class="tab-content" id="security">
+          <div class="settings-card">
+            <h2>Configurações de Segurança</h2>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-key"></i> Password</h3>
+              
+              <div class="form-group">
+                <label for="currentPass">Password Atual</label>
+                <input id="currentPass" type="password" class="form-control" placeholder="Digite sua password atual">
+              </div>
+
+              <div class="form-group">
+                <label for="newPass">Nova Password</label>
+                <input id="newPass" type="password" class="form-control" placeholder="Nova password (mín. 8 caracteres)">
+              </div>
+
+              <div class="form-group">
+                <label for="confirmPass">Confirmar Password</label>
+                <input id="confirmPass" type="password" class="form-control" placeholder="Confirme a nova password">
+              </div>
+
+              <button class="btn btn-warning" id="changePassword">
+                <i class="bi bi-pencil"></i> Alterar Password
+              </button>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-shield-check"></i> Autenticação</h3>
+
+              <div class="security-option">
+                <div class="option-header">
+                  <div>
+                    <h4>Autenticação de Dois Fatores (2FA)</h4>
+                    <p class="small text-muted">Aumenta a segurança da sua conta</p>
+                  </div>
+                  <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="security-option">
+                <div class="option-header">
+                  <div>
+                    <h4>Sessões Ativas</h4>
+                    <p class="small text-muted">Gerencie dispositivos conectados</p>
+                  </div>
+                  <button class="btn btn-sm btn-outline-secondary">Gerenciar</button>
+                </div>
+                <p class="small text-muted mt-2">Dispositivo atual: <strong>macOS • Chrome</strong></p>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-exclamation-triangle"></i> Logs de Segurança</h3>
+              <p class="small text-muted">Últimas atividades na sua conta</p>
+              
+              <div class="logs-list">
+                <div class="log-item">
+                  <div>
+                    <strong>Login bem-sucedido</strong><br>
+                    <small class="text-muted">macOS • Chrome • 192.168.1.1</small>
+                  </div>
+                  <small class="text-muted">Há 2 horas</small>
+                </div>
+                <div class="log-item">
+                  <div>
+                    <strong>Alteração de configurações</strong><br>
+                    <small class="text-muted">Dashboard • Mudança de email</small>
+                  </div>
+                  <small class="text-muted">Há 5 dias</small>
+                </div>
+                <div class="log-item">
+                  <div>
+                    <strong>Login bem-sucedido</strong><br>
+                    <small class="text-muted">Windows • Firefox • 192.168.1.2</small>
+                  </div>
+                  <small class="text-muted">Há 1 semana</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="saveSecurity">
+                <i class="bi bi-check-circle"></i> Guardar Alterações
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABA 3: NOTIFICAÇÕES -->
+        <section class="tab-content" id="email">
+          <div class="settings-card">
+            <h2>Preferências de Notificações</h2>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-envelope"></i> Notificações por Email</h3>
+
+              <div class="notification-item">
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+                <div>
+                  <h4>Novos Projetos Submetidos</h4>
+                  <p class="small text-muted">Receba notificação quando novo projeto é submetido</p>
+                </div>
+              </div>
+
+              <div class="notification-item">
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+                <div>
+                  <h4>Defesas Programadas</h4>
+                  <p class="small text-muted">Lembretes sobre defesas próximas</p>
+                </div>
+              </div>
+
+              <div class="notification-item">
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="slider"></span>
+                </label>
+                <div>
+                  <h4>Atualizações do Sistema</h4>
+                  <p class="small text-muted">Notícias e atualizações importantes</p>
+                </div>
+              </div>
+
+              <div class="notification-item">
+                <label class="toggle-switch">
+                  <input type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+                <div>
+                  <h4>Reportes Semanais</h4>
+                  <p class="small text-muted">Resumo semanal de atividades</p>
+                </div>
+              </div>
+
+              <div class="notification-item">
+                <label class="toggle-switch">
+                  <input type="checkbox">
+                  <span class="slider"></span>
+                </label>
+                <div>
+                  <h4>Comentários em Projectos</h4>
+                  <p class="small text-muted">Notificações de novos comentários</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-alarm"></i> Frequência de Notificações</h3>
+
+              <div class="form-group">
+                <label>Quando notificar?</label>
+                <div class="btn-group d-flex" role="group">
+                  <input type="radio" class="btn-check" name="notifyFreq" id="notifyImm" value="immediate" checked>
+                  <label class="btn btn-outline-secondary" for="notifyImm">Imediatamente</label>
+
+                  <input type="radio" class="btn-check" name="notifyFreq" id="notifyDaily" value="daily">
+                  <label class="btn btn-outline-secondary" for="notifyDaily">Diariamente</label>
+
+                  <input type="radio" class="btn-check" name="notifyFreq" id="notifyWeekly" value="weekly">
+                  <label class="btn btn-outline-secondary" for="notifyWeekly">Semanalmente</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="saveNotif">
+                <i class="bi bi-check-circle"></i> Guardar Preferências
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABA 4: ADMINISTRADORES -->
+        <section class="tab-content" id="admins">
+          <div class="settings-card">
+            <h2>Gestão de Administradores</h2>
+
+            <div class="alert alert-info mb-4">
+              <i class="bi bi-info-circle"></i>
+              <strong>Informação:</strong> Gerencie aqui todos os administradores do sistema. Apenas contas de administrador podem aceder a este painel.
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-people-fill"></i> Administradores Actuais</h3>
+              
+              <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Email</th>
+                      <th>Cargo</th>
+                      <th>Status</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Admin System</strong></td>
+                      <td>admin@escola.pt</td>
+                      <td>Super Administrador</td>
+                      <td><span class="badge badge-success">Activo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" title="Ver">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>João Coordenador</strong></td>
+                      <td>joao.coord@escola.pt</td>
+                      <td>Coordenador</td>
+                      <td><span class="badge badge-success">Activo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Remover">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mt-3">
+                <a href="add-admin.html" class="btn btn-brand">
+                  <i class="bi bi-plus-lg"></i> Adicionar Novo Administrador
+                </a>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-lock"></i> Permissões Padrão</h3>
+
+              <p class="text-muted">Configure as permissões padrão para novos administradores:</p>
+
+              <div class="permission-checklist">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="defaultManageUsers" checked>
+                  <label class="form-check-label" for="defaultManageUsers">
+                    Gerir Utilizadores
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="defaultManageProjects" checked>
+                  <label class="form-check-label" for="defaultManageProjects">
+                    Gerir Projectos
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="defaultViewReports" checked>
+                  <label class="form-check-label" for="defaultViewReports">
+                    Ver Relatórios
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="defaultSettings" checked>
+                  <label class="form-check-label" for="defaultSettings">
+                    Configurações do Sistema
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="saveAdmins">
+                <i class="bi bi-check-circle"></i> Guardar Alterações
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABA 5: AVANÇADO -->
+        <section class="tab-content" id="advanced">
+          <div class="settings-card">
+            <h2>Configurações Avançadas</h2>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-sliders"></i> Performance</h3>
+
+              <div class="form-group">
+                <label for="itemsPerPage">Items por página</label>
+                <select id="itemsPerPage" class="form-select">
+                  <option value="10">10 items</option>
+                  <option value="25" selected>25 items</option>
+                  <option value="50">50 items</option>
+                  <option value="100">100 items</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="sessionTimeout">Timeout de Sessão (minutos)</label>
+                <input id="sessionTimeout" type="number" class="form-control" value="30" min="5" max="480">
+              </div>
+
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" checked> Carregar cache
+                </label>
+                <small class="form-text text-muted d-block">Melhora a performance ao armazenar dados em cache</small>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-database"></i> Base de Dados</h3>
+
+              <div class="alert alert-info">
+                <i class="bi bi-info-circle"></i>
+                <div>
+                  <strong>Informações de BD</strong>
+                  <p>Tipo: MySQL 8.0 | Tamanho: 125 MB | Última cópia: 24/02/2025 09:30</p>
+                </div>
+              </div>
+
+              <button class="btn btn-outline-secondary me-2" id="backupBtn">
+                <i class="bi bi-download"></i> Fazer Backup
+              </button>
+              <button class="btn btn-outline-secondary" id="optimizeBtn">
+                <i class="bi bi-gear"></i> Otimizar BD
+              </button>
+            </div>
+
+            <div class="settings-section">
+              <h3><i class="bi bi-file-text"></i> Logs do Sistema</h3>
+
+              <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle"></i>
+                <div>
+                  <strong>Espaço de Logs</strong>
+                  <p>35 MB de 500 MB | Limpeza automática em 30 dias</p>
+                </div>
+              </div>
+
+              <button class="btn btn-outline-secondary me-2" id="viewLogsBtn">
+                <i class="bi bi-file-earmark-text"></i> Ver Logs
+              </button>
+              <button class="btn btn-outline-danger" id="clearLogsBtn">
+                <i class="bi bi-trash"></i> Limpar Logs
+              </button>
+            </div>
+
+            <div class="settings-section danger-zone">
+              <h3><i class="bi bi-exclamation-octagon"></i> Zona de Perigo</h3>
+
+              <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle"></i>
+                Estas ações não podem ser desfeitas. Por favor, use com cuidado.
+              </div>
+
+              <button class="btn btn-danger" id="resetBtn">
+                <i class="bi bi-arrow-counterclockwise"></i> Reestabelecer Valores Padrão
+              </button>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" id="saveAdvanced">
+                <i class="bi bi-check-circle"></i> Guardar Alterações
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/settings.js" defer></script>
+</body>
+</html>

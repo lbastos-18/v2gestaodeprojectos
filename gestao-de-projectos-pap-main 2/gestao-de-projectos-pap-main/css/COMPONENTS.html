@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System - Guia de Componentes</title>
+  <link rel="stylesheet" href="design-system.css">
+  <style>
+    .guide-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-8);
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: var(--spacing-12);
+      padding-bottom: var(--spacing-8);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .guide-header h1 {
+      font-size: var(--font-size-4xl);
+      margin-bottom: var(--spacing-3);
+    }
+
+    .guide-header p {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+    }
+
+    .section {
+      margin-bottom: var(--spacing-12);
+      padding: var(--spacing-8);
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+
+    .section h2 {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--spacing-6);
+      padding-bottom: var(--spacing-4);
+      border-bottom: 2px solid var(--color-primary-200);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-2);
+    }
+
+    .section h2::before {
+      content: '▪';
+      color: var(--color-primary-600);
+      font-size: 24px;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-6);
+      margin-top: var(--spacing-6);
+    }
+
+    .example-item {
+      padding: var(--spacing-4);
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-base);
+      border: 1px solid var(--color-border);
+    }
+
+    .example-item h4 {
+      margin: 0 0 var(--spacing-3) 0;
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--spacing-4);
+    }
+
+    .color-box {
+      height: 100px;
+      border-radius: var(--radius-base);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      color: var(--color-white);
+      font-weight: 600;
+      font-size: var(--font-size-xs);
+      padding-bottom: var(--spacing-2);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+    .demo-section {
+      margin-top: var(--spacing-6);
+      padding-top: var(--spacing-6);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .demo-section h3 {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-4);
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-4);
+      margin-bottom: var(--spacing-6);
+    }
+
+    .form-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-4);
+      margin-top: var(--spacing-4);
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-2);
+      margin-top: var(--spacing-4);
+    }
+
+    .alert-demo {
+      margin-bottom: var(--spacing-4);
+      padding: var(--spacing-4);
+      border-radius: var(--radius-base);
+      border-left: 4px solid;
+      background: var(--color-bg-secondary);
+    }
+
+    .alert-demo.success {
+      border-left-color: var(--color-success-600);
+      background: var(--color-success-50);
+      color: var(--color-success-900);
+    }
+
+    .alert-demo.warning {
+      border-left-color: var(--color-warning-600);
+      background: var(--color-warning-50);
+      color: var(--color-warning-900);
+    }
+
+    .alert-demo.danger {
+      border-left-color: var(--color-danger-600);
+      background: var(--color-danger-50);
+      color: var(--color-danger-900);
+    }
+
+    .alert-demo.info {
+      border-left-color: var(--color-primary-600);
+      background: var(--color-primary-50);
+      color: var(--color-primary-900);
+    }
+
+    .typography-demo {
+      margin-top: var(--spacing-6);
+    }
+
+    .typography-demo h1 { font-size: var(--font-size-4xl); margin: var(--spacing-4) 0; }
+    .typography-demo h2 { font-size: var(--font-size-3xl); margin: var(--spacing-4) 0; }
+    .typography-demo h3 { font-size: var(--font-size-2xl); margin: var(--spacing-4) 0; }
+    .typography-demo h4 { font-size: var(--font-size-xl); margin: var(--spacing-4) 0; }
+    .typography-demo p { font-size: var(--font-size-base); margin: var(--spacing-4) 0; line-height: var(--line-height-relaxed); }
+    .typography-demo small { font-size: var(--font-size-sm); margin: var(--spacing-4) 0; }
+
+    @media (max-width: 768px) {
+      .guide-container {
+        padding: var(--spacing-4);
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: var(--spacing-6);
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .button-group .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body style="background: var(--color-bg);">
+
+  <div class="guide-container">
+
+    <!-- HEADER -->
+    <div class="guide-header">
+      <h1>🎨 Design System</h1>
+      <p>Guia Completo de Componentes e Variáveis</p>
+    </div>
+
+    <!-- CORES -->
+    <section class="section">
+      <h2>Paleta de Cores</h2>
+
+      <div class="demo-section">
+        <h3>Cores Primárias</h3>
+        <div class="color-grid">
+          <div class="color-box" style="background: var(--color-primary-50);">Primary 50</div>
+          <div class="color-box" style="background: var(--color-primary-100);">Primary 100</div>
+          <div class="color-box" style="background: var(--color-primary-200);">Primary 200</div>
+          <div class="color-box" style="background: var(--color-primary-300);">Primary 300</div>
+          <div class="color-box" style="background: var(--color-primary-400);">Primary 400</div>
+          <div class="color-box" style="background: var(--color-primary-500);">Primary 500</div>
+          <div class="color-box" style="background: var(--color-primary-600);">Primary 600</div>
+          <div class="color-box" style="background: var(--color-primary-700);">Primary 700</div>
+          <div class="color-box" style="background: var(--color-primary-800);">Primary 800</div>
+          <div class="color-box" style="background: var(--color-primary-900);">Primary 900</div>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>Cores Funcionais</h3>
+        <div class="color-grid">
+          <div class="color-box" style="background: var(--color-success-600);">Success</div>
+          <div class="color-box" style="background: var(--color-warning-600);">Warning</div>
+          <div class="color-box" style="background: var(--color-danger-600);">Danger</div>
+          <div class="color-box" style="background: var(--color-secondary-600);">Secondary</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOTÕES -->
+    <section class="section">
+      <h2>Botões</h2>
+
+      <div class="demo-section">
+        <h3>Variantes</h3>
+        <div class="button-group">
+          <button class="btn btn-primary">Primary</button>
+          <button class="btn btn-secondary">Secondary</button>
+          <button class="btn btn-success">Success</button>
+          <button class="btn btn-danger">Danger</button>
+          <button class="btn btn-outline">Outline</button>
+          <button class="btn btn-ghost">Ghost</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>Tamanhos</h3>
+        <div class="button-group">
+          <button class="btn btn-sm btn-primary">Small</button>
+          <button class="btn btn-primary">Normal</button>
+          <button class="btn btn-lg btn-primary">Large</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h3>Estados</h3>
+        <div class="button-group">
+          <button class="btn btn-primary">Normal</button>
+          <button class="btn btn-primary" disabled>Desabilitado</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="section">
+      <h2>Badges</h2>
+      <div class="badge-group">
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-danger">Danger</span>
+      </div>
+    </section>
+
+    <!-- ALERTS -->
+    <section class="section">
+      <h2>Alerts</h2>
+      <div class="alert-demo success">✓ Operação realizada com sucesso!</div>
+      <div class="alert-demo warning">⚠️ Atenção: Verifique os dados</div>
+      <div class="alert-demo danger">✕ Erro ao processar o pedido</div>
+      <div class="alert-demo info">ℹ️ Informação importante</div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="section">
+      <h2>Formulários</h2>
+      <div class="form-demo">
+        <div class="form-group">
+          <label for="input1">Email</label>
+          <input type="email" id="input1" placeholder="seu@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="input2">Telefone</label>
+          <input type="tel" id="input2" placeholder="+351 ...">
+        </div>
+
+        <div class="form-group">
+          <label for="select1">País</label>
+          <select id="select1">
+            <option>Portugal</option>
+            <option>Brasil</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="input3">Mensagem</label>
+          <textarea id="input3" placeholder="Escreva aqui..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="section">
+      <h2>Cards</h2>
+      <div class="example-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 style="margin: 0;">Título Card</h3>
+          </div>
+          <div class="card-body">
+            <p>Conteúdo descritivo do card.</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary">Ação</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 style="margin: 0;">Simplicidade</h3>
+          </div>
+          <div class="card-body">
+            <p>Card sem footer.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <p>Card apenas com body.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIPOGRAFIA -->
+    <section class="section">
+      <h2>Tipografia</h2>
+      <div class="typography-demo">
+        <h1>H1 - Heading 1 (36px, Bold)</h1>
+        <h2>H2 - Heading 2 (30px, Bold)</h2>
+        <h3>H3 - Heading 3 (24px, Bold)</h3>
+        <h4>H4 - Heading 4 (20px, SemiBold)</h4>
+        <p>Parágrafo normal (16px, Regular). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <small>Small text (14px, Regular) - Útil para labels e informações secundárias.</small>
+      </div>
+    </section>
+
+    <!-- ESPAÇAMENTO -->
+    <section class="section">
+      <h2>Espaçamento (8px Grid)</h2>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: var(--color-bg-secondary);">
+            <th style="padding: var(--spacing-3); text-align: left; border-bottom: 2px solid var(--color-border);">Classe</th>
+            <th style="padding: var(--spacing-3); text-align: left; border-bottom: 2px solid var(--color-border);">Valor</th>
+            <th style="padding: var(--spacing-3); text-align: left; border-bottom: 2px solid var(--color-border);">Exemplo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">--spacing-1</td>
+            <td style="padding: var(--spacing-3);">4px</td>
+            <td style="padding: var(--spacing-3);"><span style="display: inline-block; width: 4px; height: 20px; background: var(--color-primary-600);"></span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">--spacing-2</td>
+            <td style="padding: var(--spacing-3);">8px</td>
+            <td style="padding: var(--spacing-3);"><span style="display: inline-block; width: 8px; height: 20px; background: var(--color-primary-600);"></span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">--spacing-4</td>
+            <td style="padding: var(--spacing-3);">16px</td>
+            <td style="padding: var(--spacing-3);"><span style="display: inline-block; width: 16px; height: 20px; background: var(--color-primary-600);"></span></td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">--spacing-6</td>
+            <td style="padding: var(--spacing-3);">24px</td>
+            <td style="padding: var(--spacing-3);"><span style="display: inline-block; width: 24px; height: 20px; background: var(--color-primary-600);"></span></td>
+          </tr>
+          <tr>
+            <td style="padding: var(--spacing-3);">--spacing-8</td>
+            <td style="padding: var(--spacing-3);">32px</td>
+            <td style="padding: var(--spacing-3);"><span style="display: inline-block; width: 32px; height: 20px; background: var(--color-primary-600);"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- GRID RESPONSIVO -->
+    <section class="section">
+      <h2>Grid Responsivo</h2>
+      <p>Use <code style="background: var(--color-bg-secondary); padding: 2px 6px; border-radius: 3px;">grid</code> com <code style="background: var(--color-bg-secondary); padding: 2px 6px; border-radius: 3px;">grid-template-columns</code> responsivo:</p>
+      <div style="margin-top: var(--spacing-6); padding: var(--spacing-4); background: var(--color-bg-secondary); border-radius: var(--radius-base); font-family: monospace; overflow-x: auto;">
+<pre>.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-6);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}</pre>
+      </div>
+    </section>
+
+    <!-- BREAKPOINTS -->
+    <section class="section">
+      <h2>Breakpoints</h2>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: var(--color-bg-secondary);">
+            <th style="padding: var(--spacing-3); text-align: left; border-bottom: 2px solid var(--color-border);">Dispositivo</th>
+            <th style="padding: var(--spacing-3); text-align: left; border-bottom: 2px solid var(--color-border);">Largura</th>
+            <th style="padding: var(--spacing-3); text-align: left; border-bottom: 2px solid var(--color-border);">Media Query</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">Mobile</td>
+            <td style="padding: var(--spacing-3);"><640px</td>
+            <td style="padding: var(--spacing-3);">Padrão (mobile-first)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">Tablet Pequena</td>
+            <td style="padding: var(--spacing-3);">640px - 768px</td>
+            <td style="padding: var(--spacing-3);">@media (min-width: 640px)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">Tablet</td>
+            <td style="padding: var(--spacing-3);">768px - 1024px</td>
+            <td style="padding: var(--spacing-3);">@media (min-width: 768px)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--color-border);">
+            <td style="padding: var(--spacing-3);">Desktop</td>
+            <td style="padding: var(--spacing-3);">1024px - 1280px</td>
+            <td style="padding: var(--spacing-3);">@media (min-width: 1024px)</td>
+          </tr>
+          <tr>
+            <td style="padding: var(--spacing-3);">Desktop Grande</td>
+            <td style="padding: var(--spacing-3);">1280px+</td>
+            <td style="padding: var(--spacing-3);">@media (min-width: 1280px)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SOMBRAS -->
+    <section class="section">
+      <h2>Sombras</h2>
+      <div class="example-grid">
+        <div style="padding: var(--spacing-6); background: var(--color-white); border-radius: var(--radius-base); box-shadow: var(--shadow-sm);">
+          <p style="margin: 0; font-weight: 600;">shadow-sm</p>
+        </div>
+        <div style="padding: var(--spacing-6); background: var(--color-white); border-radius: var(--radius-base); box-shadow: var(--shadow-md);">
+          <p style="margin: 0; font-weight: 600;">shadow-md</p>
+        </div>
+        <div style="padding: var(--spacing-6); background: var(--color-white); border-radius: var(--radius-base); box-shadow: var(--shadow-lg);">
+          <p style="margin: 0; font-weight: 600;">shadow-lg</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

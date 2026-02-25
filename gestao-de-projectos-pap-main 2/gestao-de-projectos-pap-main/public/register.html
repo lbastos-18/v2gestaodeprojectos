@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registar • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/public.css">
+</head>
+<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <h1>Criar Conta</h1>
+        <p>Junte-se ao sistema de gestão de projectos</p>
+      </div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="name">Nome Completo</label>
+          <div class="form-control-wrapper">
+            <i class="bi bi-person"></i>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Ex: João Silva" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correio Electrónico</label>
+          <div class="form-control-wrapper">
+            <i class="bi bi-envelope"></i>
+            <input type="email" id="email" name="email" class="form-control" placeholder="usuario@exemplo.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Palavra-passe</label>
+          <div class="form-control-wrapper">
+            <i class="bi bi-lock"></i>
+            <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" minlength="6" required>
+          </div>
+          <small style="color: #999; font-size: 0.85rem;">Mínimo 6 caracteres</small>
+        </div>
+
+        <div class="form-group">
+          <label for="role">Tipo de Utilizador</label>
+          <select id="role" name="role" class="form-control" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 0.25rem;" required>
+            <option value="">Seleccione um tipo...</option>
+            <option value="student">Aluno</option>
+            <option value="advisor">Orientador</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary" style="width: 100%;">
+          <i class="bi bi-person-check"></i> Registar
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.9rem;">
+        <p>Já possui conta? <a href="login.html" style="color: var(--primary); text-decoration: none; font-weight: 500;">Entrar</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        role: formData.get('role')
+      };
+
+      try {
+        const response = await fetch('../backend/register.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert('Conta criada com sucesso! Agora pode fazer login.');
+          window.location.href = 'login.html';
+        } else {
+          alert(result.message || 'Erro ao registar conta');
+        }
+      } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao conectar ao servidor');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatórios • Gestão de Projectos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/reports.css">
+</head>
+<body class="admin-body">
+  <!-- Admin navbar -->
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item"><a href="projects.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item active"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="title">Relatórios e Análises</h1>
+        </div>
+
+        <div class="right">
+          <div class="profile">
+            <img src="https://via.placeholder.com/40" alt="Profile" class="avatar">
+            <span class="name">Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <!-- FILTROS -->
+        <div class="filters-bar">
+          <div class="filter-group">
+            <label for="filterYear">Ano Académico</label>
+            <select id="filterYear" class="form-select">
+              <option selected>2024/2025</option>
+              <option>2023/2024</option>
+              <option>2022/2023</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterCourse">Curso</label>
+            <select id="filterCourse" class="form-select">
+              <option value="">Todos</option>
+              <option>Informática</option>
+              <option>Gestão Empresarial</option>
+              <option>Enfermagem</option>
+              <option>Contabilidade & Gestão</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterType">Tipo de Relatório</label>
+            <select id="filterType" class="form-select">
+              <option selected>Todos</option>
+              <option>Projetos</option>
+              <option>Defesas</option>
+              <option>Orientadores</option>
+              <option>Estatísticas</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" id="applyFilters">
+            <i class="bi bi-funnel"></i> Aplicar
+          </button>
+          <button class="btn btn-outline-secondary" id="resetFilters">
+            <i class="bi bi-arrow-clockwise"></i>
+          </button>
+        </div>
+
+        <!-- CARDS DE ESTATÍSTICAS RÁPIDAS -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon projects">
+              <i class="bi bi-folder"></i>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Total de Projectos</p>
+              <h3 class="stat-value">124</h3>
+              <small class="stat-change positive"><i class="bi bi-arrow-up"></i> +12 este mês</small>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon defenses">
+              <i class="bi bi-mic"></i>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Defesas Realizadas</p>
+              <h3 class="stat-value">45</h3>
+              <small class="stat-change positive"><i class="bi bi-arrow-up"></i> +8 este mês</small>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon advisors">
+              <i class="bi bi-person"></i>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Orientadores Ativos</p>
+              <h3 class="stat-value">28</h3>
+              <small class="stat-change positive"><i class="bi bi-arrow-up"></i> +2 este ano</small>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon students">
+              <i class="bi bi-people"></i>
+            </div>
+            <div class="stat-content">
+              <p class="stat-label">Alunos Participantes</p>
+              <h3 class="stat-value">156</h3>
+              <small class="stat-change positive"><i class="bi bi-arrow-up"></i> +24 este mês</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- RELATÓRIOS PRINCIPAIS -->
+        <div class="reports-section">
+          <h2>Relatórios Disponíveis</h2>
+
+          <div class="reports-grid">
+            <!-- RELATÓRIO 1 -->
+            <div class="report-card">
+              <div class="report-header">
+                <h3><i class="bi bi-bar-chart"></i> Distribuição por Curso</h3>
+                <button class="btn btn-sm btn-outline-primary" title="Descarregar">
+                  <i class="bi bi-download"></i>
+                </button>
+              </div>
+              
+              <div class="report-chart">
+                <canvas id="chartCourses"></canvas>
+              </div>
+
+              <div class="report-stats">
+                <div class="stat-row">
+                  <span>Informática</span>
+                  <strong>34 projectos</strong>
+                </div>
+                <div class="stat-row">
+                  <span>Gestão Empresarial</span>
+                  <strong>28 projectos</strong>
+                </div>
+                <div class="stat-row">
+                  <span>Enfermagem</span>
+                  <strong>31 projectos</strong>
+                </div>
+                <div class="stat-row">
+                  <span>Contabilidade & Gestão</span>
+                  <strong>31 projectos</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- RELATÓRIO 2 -->
+            <div class="report-card">
+              <div class="report-header">
+                <h3><i class="bi bi-line-chart"></i> Evolução Temporal</h3>
+                <button class="btn btn-sm btn-outline-primary" title="Descarregar">
+                  <i class="bi bi-download"></i>
+                </button>
+              </div>
+
+              <div class="report-chart">
+                <canvas id="chartTimeline"></canvas>
+              </div>
+
+              <p class="small text-muted mt-3">Projectos submetidos por mês</p>
+            </div>
+
+            <!-- RELATÓRIO 3 -->
+            <div class="report-card">
+              <div class="report-header">
+                <h3><i class="bi bi-pie-chart"></i> Status dos Projectos</h3>
+                <button class="btn btn-sm btn-outline-primary" title="Descarregar">
+                  <i class="bi bi-download"></i>
+                </button>
+              </div>
+
+              <div class="report-chart">
+                <canvas id="chartStatus"></canvas>
+              </div>
+
+              <div class="report-stats">
+                <div class="stat-row">
+                  <span><i class="bi bi-circle-fill text-success"></i> Concluído</span>
+                  <strong>45</strong>
+                </div>
+                <div class="stat-row">
+                  <span><i class="bi bi-circle-fill text-warning"></i> Em Revisão</span>
+                  <strong>32</strong>
+                </div>
+                <div class="stat-row">
+                  <span><i class="bi bi-circle-fill text-info"></i> Pendente</span>
+                  <strong>47</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- RELATÓRIO 4 -->
+            <div class="report-card">
+              <div class="report-header">
+                <h3><i class="bi bi-award"></i> Avaliações Médias</h3>
+                <button class="btn btn-sm btn-outline-primary" title="Descarregar">
+                  <i class="bi bi-download"></i>
+                </button>
+              </div>
+
+              <div class="report-stats large">
+                <div class="score-row">
+                  <span>Qualidade do Projeto</span>
+                  <div class="score-bar">
+                    <div class="score-fill" style="width: 78%"></div>
+                  </div>
+                  <strong>7.8/10</strong>
+                </div>
+                <div class="score-row">
+                  <span>Apresentação</span>
+                  <div class="score-bar">
+                    <div class="score-fill" style="width: 82%"></div>
+                  </div>
+                  <strong>8.2/10</strong>
+                </div>
+                <div class="score-row">
+                  <span>Documentação</span>
+                  <div class="score-bar">
+                    <div class="score-fill" style="width: 71%"></div>
+                  </div>
+                  <strong>7.1/10</strong>
+                </div>
+                <div class="score-row">
+                  <span>Inovação</span>
+                  <div class="score-bar">
+                    <div class="score-fill" style="width: 65%"></div>
+                  </div>
+                  <strong>6.5/10</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABELA DE DEFESAS PROGRAMADAS -->
+        <div class="reports-section">
+          <div class="section-header">
+            <h2>Calendário de Defesas Próximas</h2>
+            <a href="#" class="btn btn-sm btn-primary">
+              <i class="bi bi-plus"></i> Programar Defesa
+            </a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Projeto</th>
+                  <th>Alunos</th>
+                  <th>Orientador</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>25/02/2025</td>
+                  <td>14:00</td>
+                  <td><strong>Sistema de Gestão Escolar</strong></td>
+                  <td>João Silva, Maria Santos</td>
+                  <td>Dr. Carlos</td>
+                  <td><span class="badge bg-success">Confirmada</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary" title="Editar"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" title="Cancelar"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>25/02/2025</td>
+                  <td>15:30</td>
+                  <td><strong>Plataforma de E-learning</strong></td>
+                  <td>Ana Oliveira, Pedro Costa</td>
+                  <td>Dra. Marta</td>
+                  <td><span class="badge bg-success">Confirmada</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary" title="Editar"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" title="Cancelar"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>26/02/2025</td>
+                  <td>10:00</td>
+                  <td><strong>App de Saúde Mental</strong></td>
+                  <td>Lara Sousa, Nuno Gomes</td>
+                  <td>Dr. Miguel</td>
+                  <td><span class="badge bg-warning">Pendente</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary" title="Editar"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" title="Cancelar"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>26/02/2025</td>
+                  <td>14:00</td>
+                  <td><strong>Gestor de Inventário</strong></td>
+                  <td>Roberto Dias, Inês Martins</td>
+                  <td>Dra. Joana</td>
+                  <td><span class="badge bg-warning">Pendente</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-secondary" title="Editar"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" title="Cancelar"><i class="bi bi-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- EXPORTAÇÃO -->
+        <div class="reports-section">
+          <div class="export-card">
+            <h3><i class="bi bi-download"></i> Exportar Relatórios</h3>
+            <p>Gere um relatório completo em diferentes formatos</p>
+
+            <div class="export-options">
+              <button class="export-btn">
+                <i class="bi bi-file-pdf"></i>
+                <span>PDF</span>
+              </button>
+              <button class="export-btn">
+                <i class="bi bi-file-earmark-excel"></i>
+                <span>Excel</span>
+              </button>
+              <button class="export-btn">
+                <i class="bi bi-file-text"></i>
+                <span>CSV</span>
+              </button>
+              <button class="export-btn">
+                <i class="bi bi-envelope"></i>
+                <span>Email</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/reports.js" defer></script>
+</body>
+</html>

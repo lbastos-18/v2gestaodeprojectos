@@ -1,0 +1,21 @@
+{
+    "explorer.confirmDelete": false,
+    "git.allowForcePush": true,
+    "git.allowNoVerifyCommit": true,
+    "git.alwaysShowStagedChangesResourceGroup": true,
+    "git.alwaysSignOff": true,
+    "git.autoStash": true,
+    "files.autoSave": "afterDelay",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.colorTheme": "Dracula Theme",
+    "liveServer.settings.donotVerifyTags": true,
+    "chat.editing.confirmEditRequestRemoval": false,
+    "Codegeex.Privacy": true,
+    "Codegeex.License": "",
+    "php.validate.executablePath": "",
+    "Codegeex.DisabledFor": {
+        "html": true
+    },
+    "Codegeex.EnableExtension": false
+}

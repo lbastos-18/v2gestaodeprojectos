@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Orientadores • Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/users.css">
+</head>
+<body class="admin-body">
+
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar" aria-label="Barra lateral">
+      <div class="brand">
+        <div class="logo">SA</div>
+        <div class="brand-text">Gestão de Projectos</div>
+        <button id="collapseBtn" class="collapse-btn" aria-label="Recolher menu">
+          <i class="bi bi-caret-left-fill"></i>
+        </button>
+      </div>
+
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="admindashboard.html" data-target="dashboard"><i class="bi bi-house"></i> <span class="label">Dashboard</span></a></li>
+          <li class="nav-item"><a href="add-project.html" data-target="projects"><i class="bi bi-folder"></i> <span class="label">Projectos</span></a></li>
+          <li class="nav-item active"><a href="users.html" data-target="users"><i class="bi bi-people"></i> <span class="label">Orientadores</span></a></li>
+          <li class="nav-item"><a href="reports.html" data-target="reports"><i class="bi bi-bar-chart"></i> <span class="label">Relatórios</span></a></li>
+          <li class="nav-item"><a href="settings.html" data-target="settings"><i class="bi bi-gear"></i> <span class="label">Configurações</span></a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <small class="muted">v1.0 • Admin</small>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="left">
+          <button id="mobileToggle" class="icon-btn" aria-label="Abrir/fechar menu">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="title">Orientadores</h1>
+        </div>
+
+        <div class="right">
+          <div class="search">
+            <input id="searchInput" type="search" class="form-control form-control-sm" placeholder="Pesquisar orientador..." />
+          </div>
+          <div class="profile">
+            <div class="avatar">LB</div>
+            <div class="profile-info">
+              <div id="username">Admin</div>
+              <small class="muted">Administrador</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT -->
+      <section class="content">
+        <!-- INFO STATS -->
+        <div class="cards">
+          <div class="card">
+            <div class="stat-value">4</div>
+            <div class="stat-label">Orientadores</div>
+            <div class="trend up">
+              <i class="bi bi-arrow-up"></i> Total activos
+            </div>
+          </div>
+          <div class="card">
+            <div class="stat-value">18</div>
+            <div class="stat-label">Projectos Orientados</div>
+            <div class="trend up">
+              <i class="bi bi-arrow-up"></i> Todos em progresso
+            </div>
+          </div>
+          <div class="card">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Máx. Carga (Prof. Lopes)</div>
+            <div class="trend">
+              <i class="bi bi-info-circle"></i> Maior distribuição
+            </div>
+          </div>
+        </div>
+
+        <!-- TABELA USERS -->
+        <div class="layout-panel">
+          <main class="panel">
+            <div class="table-card card">
+              <div class="table-header">
+                <h3>Lista de Orientadores</h3>
+                <div class="table-controls">
+                  <a href="add-user.html" class="btn btn-sm btn-brand">
+                    <i class="bi bi-plus-lg"></i> Adicionar Orientador
+                  </a>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="table table-hover table-striped" id="usersTable">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Email</th>
+                      <th>Área de Especialidade</th>
+                      <th>Projectos</th>
+                      <th>Status</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Prof. João Silva</strong></td>
+                      <td>joao.silva@escola.pt</td>
+                      <td>Programação</td>
+                      <td>5</td>
+                      <td><span class="badge badge-success">Activo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Eng. Paulo Costa</strong></td>
+                      <td>paulo.costa@escola.pt</td>
+                      <td>Redes e Sistemas</td>
+                      <td>3</td>
+                      <td><span class="badge badge-success">Activo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Dr. Manuel Rocha</strong></td>
+                      <td>manuel.rocha@escola.pt</td>
+                      <td>Gestão Empresarial</td>
+                      <td>4</td>
+                      <td><span class="badge badge-success">Activo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Enf. Maria Lopes</strong></td>
+                      <td>maria.lopes@escola.pt</td>
+                      <td>Enfermagem Clínica</td>
+                      <td>6</td>
+                      <td><span class="badge badge-success">Activo</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" title="Eliminar">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer muted">© Santa Ana & Noesa — Gestão de Projectos</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/admindashboard.js" defer></script>
+</body>
+</html>
