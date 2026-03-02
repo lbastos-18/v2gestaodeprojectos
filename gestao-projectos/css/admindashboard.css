@@ -1,0 +1,379 @@
+/* =====================
+   RESET & VARIÁVEIS
+===================== */
+:root {
+  --blue: #1e3a8a;
+  --blue-light: #3b82f6;
+  --cream: #f8f6f1;
+  --bg: #f4f5f7;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* =====================
+   APP LAYOUT
+===================== */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =====================
+   SIDEBAR
+===================== */
+.sidebar {
+  width: 260px;
+  background: var(--blue);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo {
+  background: #fff;
+  color: var(--blue);
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.brand-text {
+  font-weight: 600;
+}
+
+.sidebar.collapsed .brand-text {
+  display: none;
+}
+
+.collapse-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav {
+  flex: 1;
+}
+
+.nav ul {
+  list-style: none;
+}
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.nav-item a:hover,
+.nav-item.active a {
+  background: rgba(255,255,255,0.15);
+}
+
+.sidebar.collapsed .label {
+  display: none;
+}
+
+.sidebar-footer {
+  padding: 12px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* =====================
+   MAIN
+===================== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================
+   TOPBAR
+===================== */
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.search input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  background: var(--blue);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* =====================
+   CONTENT
+===================== */
+.content {
+  padding: 20px;
+}
+
+/* =====================
+   CARDS
+===================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+
+/* =====================
+   PANELS
+===================== */
+.layout-panel {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}
+
+.filter-panel {
+  background: var(--cream);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.filter-group select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+.btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--blue);
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+}
+
+/* =====================
+   TABLE
+===================== */
+.table-card {
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.table-header {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.table th {
+  background: var(--cream);
+  font-size: 14px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  text-align: center;
+  padding: 14px;
+  font-size: 14px;
+}
+
+/* =====================
+   DASHBOARD STATS CARDS
+===================== */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card.light {
+  background: linear-gradient(135deg, #f8f6f1, #ffffff);
+  color: var(--text);
+}
+
+.stat-card .icon {
+  font-size: 26px;
+  opacity: 0.9;
+}
+
+.stat-title {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-sub {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* =====================
+   TABLE ACTIONS
+===================== */
+.table-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.table-actions a {
+  font-size: 13px;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.table-actions .view {
+  background: var(--cream);
+  color: var(--text);
+  border: 1px solid rgba(11,18,33,0.06);
+}
+
+.table-actions .edit {
+  background: #2563eb;
+  color: #fff;
+}
+
+.table-actions .delete {
+  background: #ef4444;
+  color: #fff;
+}

@@ -1,0 +1,222 @@
+/* =========================================================
+   PROJECTS.CSS
+   Página: Projetos Defendidos
+   Estilo: Académico moderno (Clean + Profissional)
+   ========================================================= */
+
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --primary: #1e3a8a;      /* azul forte */
+  --secondary: #f3f4f6;    /* creme/cinza claro */
+  --accent: #2563eb;       /* azul destaque */
+  --text: #0f172a;
+  --muted: #64748b;
+  --success: #16a34a;
+  --radius: 14px;
+}
+
+/* RESET BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.page-header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  padding: 40px 60px;
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.page-header .subtitle {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.filters {
+  max-width: 1200px;
+  margin: -25px auto 40px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.filters select {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  background: #fff;
+}
+
+.filters button {
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.filters button:hover {
+  background: #1d4ed8;
+}
+
+/* =========================================================
+   PROJECT GRID
+   ========================================================= */
+
+.projects-grid {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* =========================================================
+   PROJECT CARD
+   ========================================================= */
+
+.project-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(15,23,42,0.15);
+}
+
+/* HEADER DO CARD */
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+}
+
+.project-title {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* STATUS */
+
+.status {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.status.concluido {
+  background: #dcfce7;
+  color: var(--success);
+}
+
+/* INFO */
+
+.project-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.project-info strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* FOOTER */
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.project-type {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--secondary);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.project-footer a {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.project-footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 30px 20px;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters select,
+  .filters button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar Projeto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/add-project.css">
+</head>
+<body>
+
+<header class="page-header">
+  <h1>Adicionar Projeto</h1>
+  <p class="muted">Preencha os dados do projeto defendido</p>
+</header>
+
+<main class="container">
+
+  <form class="project-form">
+
+    <!-- INFO GERAL -->
+    <section class="form-section">
+      <h2>Informações Gerais</h2>
+
+      <div class="grid">
+        <div>
+          <label>Nome do Projeto</label>
+          <input type="text" placeholder="Ex: Sistema de Gestão Escolar">
+        </div>
+
+        <div>
+          <label>Ano</label>
+          <select>
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Curso</label>
+          <select>
+            <option>Informática</option>
+            <option>Gestão Empresarial</option>
+            <option>Enfermagem</option>
+            <option>Contabilidade & Gestão</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Tipo (Informática)</label>
+          <select>
+            <option>Programação</option>
+            <option>Redes</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Orientador</label>
+          <input type="text" placeholder="Nome do orientador">
+        </div>
+
+        <div>
+          <label>Estado</label>
+          <input type="text" value="Concluído" disabled>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMBROS -->
+    <section class="form-section">
+      <h2>Membros do Grupo</h2>
+
+      <div class="members">
+        <input type="text" placeholder="Nome do membro 1">
+        <input type="text" placeholder="Nome do membro 2">
+        <input type="text" placeholder="Nome do membro 3">
+      </div>
+
+      <small class="muted">
+        (O backend poderá tornar esta lista dinâmica)
+      </small>
+    </section>
+
+    <!-- DESCRIÇÃO -->
+    <section class="form-section">
+      <h2>Descrição do Projeto</h2>
+
+      <label>Resumo</label>
+      <textarea rows="3"></textarea>
+
+      <label>Descrição Completa</label>
+      <textarea rows="6"></textarea>
+    </section>
+
+    <!-- UPLOAD -->
+    <section class="form-section">
+      <h2>Documento</h2>
+
+      <label>Upload do PDF do Projeto</label>
+      <input type="file" accept=".pdf">
+    </section>
+
+    <!-- AÇÕES -->
+    <div class="actions">
+      <a href="admin-dashboard.html" class="btn ghost">Cancelar</a>
+      <button type="button" class="btn">Guardar Projeto</button>
+    </div>
+
+  </form>
+
+</main>
+
+</body>
+</html>

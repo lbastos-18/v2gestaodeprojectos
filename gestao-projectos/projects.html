@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Projetos</title>
+  <link rel="stylesheet" href="./css/projects.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <div>
+      <h1>Projetos Defendidos</h1>
+      <p class="subtitle">Lista de projetos académicos concluídos</p>
+    </div>
+  </header>
+
+  <!-- FILTERS -->
+  <section class="filters">
+    <select>
+      <option>Todos os Cursos</option>
+      <option>Informática</option>
+      <option>Gestão Empresarial</option>
+      <option>Enfermagem</option>
+      <option>Contabilidade & Gestão</option>
+    </select>
+
+    <select>
+      <option>Todos os Tipos</option>
+      <option>Programação</option>
+      <option>Redes</option>
+    </select>
+
+    <button>Filtrar</button>
+  </section>
+
+  <!-- PROJECT LIST -->
+  <main class="projects-grid">
+
+    <!-- CARD -->
+    <article class="project-card">
+      <div class="project-header">
+        <h2 class="project-title">Sistema de Gestão Escolar</h2>
+        <span class="status concluido">Concluído</span>
+      </div>
+
+      <div class="project-info">
+        <span><strong>Curso:</strong> Informática</span>
+        <span><strong>Tipo:</strong> Programação</span>
+        <span><strong>Orientador:</strong> Prof. João Silva</span>
+        <span><strong>Membros:</strong> 3 alunos</span>
+      </div>
+
+      <div class="project-footer">
+        <span class="project-type">Informática</span>
+        <a href="project-details.html?id=1">Ver detalhes →</a>
+      </div>
+    </article>
+
+    <!-- OUTRO CARD -->
+    <article class="project-card">
+      <div class="project-header">
+        <h2 class="project-title">Rede de Computadores Hospitalar</h2>
+        <span class="status concluido">Concluído</span>
+      </div>
+
+      <div class="project-info">
+        <span><strong>Curso:</strong> Informática</span>
+        <span><strong>Tipo:</strong> Redes</span>
+        <span><strong>Orientador:</strong> Eng. Paulo Costa</span>
+        <span><strong>Membros:</strong> 4 alunos</span>
+      </div>
+
+      <div class="project-footer">
+        <span class="project-type">Redes</span>
+        <a href="project-details.html?id=2">Ver detalhes →</a>
+      </div>
+    </article>
+
+  </main>
+<script src="js/projects.js"></script>
+<script>
+  function openProject(id) {
+    const project = projects.find(p => p.id === id);
+    localStorage.setItem("selectedProject", JSON.stringify(project));
+    window.location.href = "project-details.html";
+  }
+</script>
+
+</body>
+</html>

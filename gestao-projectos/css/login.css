@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    height: 100vh;
+}
+
+/* Centraliza tudo */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Card do login */
+.login-card {
+    background: #ffffff;
+    width: 380px;           /* ⬅ TAMANHO BOM */
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #ddd; /* ⬅ BORDA DE VOLTA */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Título */
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Labels */
+.login-card label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Inputs */
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Botão */
+.login-card button {
+    width: 100%;
+    padding: 12px;
+    background: #1e3c72;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background: #16305d;
+}
